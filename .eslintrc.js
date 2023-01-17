@@ -15,5 +15,6 @@ module.exports = {
     'class-methods-use-this': 'off',
     'import/first': 'off',
     'no-unused-vars': 'off',
+    'no-param-reassign': 'off',
   },
 };
