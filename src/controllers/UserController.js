@@ -14,6 +14,7 @@ class UserController {
   async getUsers(req, res) {
     try {
       const listUsers = await User.findAll();
+      console.log(`PEGUEI NO MEU MIDDLEARE DE VALIDAÇÃO JWT ${req.userId} E ${req.userEmail}`);
       return res.status(200).json(listUsers);
     } catch (error) {
       console.log(error);
