@@ -4,7 +4,8 @@ class UserController {
   async create(req, res) {
     try {
       const novoUser = await User.create(req.body);
-      res.json(novoUser);
+      const { id, nome, email } = novoUser;
+      res.json({ id, nome, email });
     } catch (error) {
       console.log(error);
       res.status(400).json({ errors: error.errors.map((err) => err.message) });
@@ -24,7 +25,7 @@ class UserController {
 
   async show(req, res) {
     try {
-      const user = await User.findByPk(req.params.id);
+      const user = await User.findByPk(req.userId);
 
       const { id, nome, email } = user;
       return res.status(200).json({ id, nome, email });
@@ -51,11 +52,7 @@ class UserController {
 
   async delete(req, res) {
     try {
-      const { id } = req.params;
-      if (!id) {
-        res.status(400).json({ errors: ['O usuário não existe na base de dados'] });
-      }
-      const user = await User.findByPk(id);
+      const user = await User.findByPk(req.userId);
       if (!user) {
         res.status(400).json({ errors: ['O usuário não existe na base de dados'] });
       }

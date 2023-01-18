@@ -7,6 +7,7 @@ import express from 'express';
 import homeRoutes from './src/routes/homeRoutes';
 import userRoutes from './src/routes/userRoutes';
 import tokenRoutes from './src/routes/tokenRoutes';
+import teste from './src/middlewares/teste';
 
 class App {
   constructor() {
@@ -18,6 +19,7 @@ class App {
   middlewares() {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
+    this.app.use(teste);
   }
 
   routes() {
