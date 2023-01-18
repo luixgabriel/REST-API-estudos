@@ -13,7 +13,7 @@ class UserController {
 
   async getUsers(req, res) {
     try {
-      const listUsers = await User.findAll();
+      const listUsers = await User.findAll({ attributes: ['id', 'nome', 'email'] });
       console.log(`PEGUEI NO MEU MIDDLEARE DE VALIDAÇÃO JWT ${req.userId} E ${req.userEmail}`);
       return res.status(200).json(listUsers);
     } catch (error) {
@@ -24,9 +24,10 @@ class UserController {
 
   async show(req, res) {
     try {
-      const { id } = req.params;
-      const user = await User.findByPk(id);
-      return res.status(200).json(user);
+      const user = await User.findByPk(req.params.id);
+
+      const { id, nome, email } = user;
+      return res.status(200).json({ id, nome, email });
     } catch (error) {
       console.log(error);
       return res.json(null);
@@ -34,12 +35,9 @@ class UserController {
   }
 
   async update(req, res) {
+    console.log(req.userId);
     try {
-      const { id } = req.params;
-      if (!id) {
-        res.status(400).json({ errors: ['O usuário não existe na base de dados'] });
-      }
-      const user = await User.findByPk(id);
+      const user = await User.findByPk(req.userId);
       if (!user) {
         res.status(400).json({ errors: ['O usuário não existe na base de dados'] });
       }
