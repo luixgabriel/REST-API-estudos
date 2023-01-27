@@ -12,6 +12,22 @@ import alunoRoutes from './src/routes/alunoRoutes';
 import fotoRoutes from './src/routes/fotoRoutes';
 import teste from './src/middlewares/teste';
 
+// const whiteList = [
+//   'https://react1.otaviomiranda.com.br',
+//   'https://react2.otaviomiranda.com.br',
+//   'http://localhost:3000',
+// ];
+
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if(whiteList.indexOf(origin) !== -1 || !origin) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   }
+// };
+
 class App {
   constructor() {
     this.app = express();

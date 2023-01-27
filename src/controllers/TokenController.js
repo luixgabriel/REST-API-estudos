@@ -22,7 +22,7 @@ class TokenController {
       expiresIn: 7000000,
     });
 
-    return res.status(200).json({ token });
+    return res.status(200).json({ token, user: { nome: user.nome, id, email } });
   }
 }
 export default new TokenController();
