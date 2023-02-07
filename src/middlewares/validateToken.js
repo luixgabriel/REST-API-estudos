@@ -9,7 +9,8 @@ export default async (req, res, next) => {
     return res.status(401).json({ errors: ['Token inválido'] });
   }
 
-  const [, token] = authorization.split(' ');
+  console.log(authorization);
+  const [bearer, token] = authorization.split(' ');
 
   try {
     const dados = jwt.verify(token, process.env.secret);

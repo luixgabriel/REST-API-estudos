@@ -5,12 +5,12 @@ dotenv.config();
 
 import './src/database';
 import express from 'express';
+import cors from 'cors';
 import homeRoutes from './src/routes/homeRoutes';
 import userRoutes from './src/routes/userRoutes';
 import tokenRoutes from './src/routes/tokenRoutes';
 import alunoRoutes from './src/routes/alunoRoutes';
 import fotoRoutes from './src/routes/fotoRoutes';
-import teste from './src/middlewares/teste';
 
 // const whiteList = [
 //   'https://react1.otaviomiranda.com.br',
@@ -39,7 +39,7 @@ class App {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
     this.app.use(express.static(resolve(__dirname, 'uploads')));
-    this.app.use(teste);
+    this.app.use(cors());
   }
 
   routes() {
